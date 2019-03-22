@@ -1,2 +1,3 @@
 # pyGUI
-excel表格操作
+# python3
+excel表格GUI界面操作方式
