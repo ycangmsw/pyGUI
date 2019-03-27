@@ -273,6 +273,7 @@ class MyFrame(wx.Frame):
     #    False: 全路径列表中没有指定的文件名
     #    True: 全路径列表中有指定的文件名
     def file_is_exist( self , strPathname , strFileName ):
+        '''判断文件是否存在'''
         if os.path.exists(strPathname):
             #判断操作系统类型
             if (platform.system() == "Windows"):
