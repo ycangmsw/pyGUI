@@ -346,11 +346,13 @@ class MyFrame(wx.Frame):
         
     def btnNonStandar_DownW(self,event):
         pass
+        event.Skip()
         
     def gridNonStandar_OnClick(self,event):
         nrow = event.GetRow()
         ncol = event.GetCol()
         self.txtNonStandarShow.SetValue( self.gridNonStandar.GetCellValue ( nrow, ncol) )
+        event.Skip()
         
         
     def txtSend_OnChange(self, event):  # wxGlade: MyFrame.<event_handler>
@@ -427,13 +429,20 @@ class MyFrame(wx.Frame):
         event.Skip()
         
     def btnSend_DownW(self,event):
-        pass
+        non_grid_rows = self.gridNonStandar.GetNumberRows()
+        send_grid_rows = self.gridSend.GetNumberRows()
+        for non_row in range(0,non_grid_rows):
+            for send_row in range(0,send_grid_rows):
+                if self.gridSend.GetCellValue(send_row, 3) == self.gridNonStandar.GetCellValue(non_row, 2) :
+                    self.gridNonStandar.SetCellValue(non_row, 16, self.gridSend.GetCellValue(send_row, 20))
+        event.Skip()
 
     def gridSend_OnClick(self,event):
         nrow = event.GetRow()
         ncol = event.GetCol()
         self.gridSend.SetGridCursor( nrow, ncol )
         self.txtSendShow.SetValue( self.gridSend.GetCellValue ( nrow, ncol) )
+        event.Skip()
 
     def txtPrize_OnChange(self, event):  # wxGlade: MyFrame.<event_handler>
         strPathName = self.txtPrize.GetValue()
@@ -518,13 +527,20 @@ class MyFrame(wx.Frame):
         event.Skip()
 
     def btnPrize_DownW(self,event):
-        pass
+        non_grid_rows = self.gridNonStandar.GetNumberRows()
+        prize_grid_rows = self.gridPrize.GetNumberRows()
+        for non_row in range(0,non_grid_rows):
+            for prize_row in range(0,prize_grid_rows):
+                if self.gridPrize.GetCellValue(prize_row, 3) == self.gridNonStandar.GetCellValue(non_row, 2) :
+                    self.gridNonStandar.SetCellValue(non_row, 15, self.gridPrize.GetCellValue(prize_row, 7))
+        event.Skip()
 
     def gridPrize_OnClick(self,event):
         nrow = event.GetRow()
         ncol = event.GetCol()
         self.gridPrize.SetGridCursor( nrow, ncol )
         self.txtPrizeShow.SetValue( self.gridPrize.GetCellValue ( nrow, ncol) )
+        event.Skip()
 
 # end of class MyFrame
 
